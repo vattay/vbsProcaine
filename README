@@ -1,0 +1,59 @@
+vbsProcaine
+
+*Intent
+Create a collection of code snippets, functions, and classes to numb the aggravating pain
+of starting a complex VBScript project.
+
+*Reason
+Yes, the real problem is "Why are you usign vbScript to do anything complex?" Some of us work
+in evironments of idiots, by idiots, for idiots with remarkably unresponsive change control
+processes. So we are stuck with this whore of a language, vbScript.
+
+*Status
+To call this "Alpha" would be an incredible overstatement.
+
+Despite rumors of powershell crapping out rainbows it's not very well documented. It's not
+present on Windows up to Server 2008 pre SP1, and many systems are controlled by idiotic
+change control system that will not allow anything other than Windows Script Host.
+
+*Pre-Reqs
+-Windows (Duh)
+-Windows Script Host
+-The "include" hack needed to enable libraries.
+
+*Instructions
+1. Paste the include emulator in your code.
+2. Call "Include(<some_file_path>)" to include a library in your code.
+3. Use library functions and classes.
+
+'PASTE THIS IN YOUR CODE THAT NEEDS TO INCLUDE LIBS-------------------------
+' --------------------------------------------------------------------------
+' VBScript "Include" emulator
+' --------------------------------------------------------------------------
+Sub Include(sInstFile)
+	On Error Resume Next
+
+	Dim oFSO, f, s
+
+	Set oFSO = CreateObject("Scripting.FileSystemObject")
+	If oFSO.FileExists(sInstFile) Then
+		Set f = oFSO.OpenTextFile(sInstFile)
+		s = f.ReadAll
+		f.Close
+		ExecuteGlobal s
+	End If
+
+	Set oFSO = Nothing
+	Set f = Nothing
+End Sub
+' --------------------------------------------------------------------------
+
+*Caveats
+Debugging a library is impossible using it in an included manner, errors always are reported
+to be on the include line. Write a test driver function in the library to test it.
+
+*Props
+DeekGeek for posting the include emulator on DZone
+
+License
+GNU GPL v3 FTW

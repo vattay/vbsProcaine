@@ -1,0 +1,19 @@
+' --------------------------------------------------------------------------
+' VBScript "Include" emulator
+' --------------------------------------------------------------------------
+Sub Include(sInstFile)
+	On Error Resume Next
+
+	Dim oFSO, f, s
+
+	Set oFSO = CreateObject("Scripting.FileSystemObject")
+	If oFSO.FileExists(sInstFile) Then
+		Set f = oFSO.OpenTextFile(sInstFile)
+		s = f.ReadAll
+		f.Close
+		ExecuteGlobal s
+	End If
+
+	Set oFSO = Nothing
+	Set f = Nothing
+End Sub
