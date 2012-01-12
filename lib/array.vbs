@@ -1,4 +1,4 @@
-Option Explicit
+'Option Explicit
 ' vbsProcaine:Array v0.01
 '    Copyright (C) 2011  Anton Vattay
 '
