@@ -1,4 +1,4 @@
-Option Explicit
+'Option Explicit
 ' vbsProcaine:concurrent v0.01
 '    Copyright (C) 2011  Anton Vattay
 '
@@ -76,7 +76,7 @@ test()
 Function test()
 
 	Dim myLock
-	Set myLock= new Lock.init("c:\users\anton.vattay\Desktop\vbsProcaine\lib\mine.lck")
+	Set myLock= new Lock.init("mine.lck")
 	myLock.lock()
 	WScript.echo "woo"
 	WScript.sleep 5000
